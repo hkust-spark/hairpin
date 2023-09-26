@@ -63,6 +63,10 @@ uint8_t HairpinPolicy::GetFecCnt (double_t loss, uint8_t frameSize, uint16_t rem
     layer = (layer < 1) ? 1 : ((layer > 15) ? 15 : layer);
     uint8_t layer_index = (uint8_t) round(((double_t) layer - 1) / 1);
 
+    // For hairpinone baseline
+    if (k_delayDdl == 0)
+        layer_index = 0;
+
     // packet_index = round((packet - start) / interval)
     packet = (packet < 1) ? 1 : ((packet > 55) ? 55 : packet);
     uint8_t packet_index = (uint8_t) round(((double_t) packet - 1) / 1);
@@ -73,6 +77,7 @@ uint8_t HairpinPolicy::GetFecCnt (double_t loss, uint8_t frameSize, uint16_t rem
         + frame_size_index * 825
         + layer_index * 55
         + packet_index;
+
     /* assignment */
     return m_betaArray[index];
 }

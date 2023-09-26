@@ -412,7 +412,7 @@ main (int argc, char *argv[])
     if(fecPolicy == "hairpin" || fecPolicy == "hairpinbound") {
         fecPolicyIns = CreateObject<HairpinPolicy> (delayDdl, (uint8_t) qoeCoeffPow, 1, 0);
     } else if(fecPolicy == "hairpinone") {
-        fecPolicyIns = CreateObject<HairpinPolicy> (10, (uint8_t) qoeCoeffPow, 1, 0);
+        fecPolicyIns = CreateObject<HairpinPolicy> (0, (uint8_t) qoeCoeffPow, 1, 0);
     } else if(fecPolicy == "fixed") {
         fecPolicyIns = CreateObject<FixedPolicy> (param1);
     } else if(fecPolicy == "webrtc") {

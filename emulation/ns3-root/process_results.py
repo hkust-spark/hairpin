@@ -122,7 +122,7 @@ def multiAlgo (logdir, algo, args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser ()
     parser.add_argument ('--vmaf', action='store_true', help='calculate vmaf')
-    parser.add_argument ("--tracefilter", type=str)
+    parser.add_argument ("--tracefilter", type=str, default="(^.*$)")
     parser.add_argument ("--logdir", type=str, default='logs/')
     args = parser.parse_args ()
 
@@ -151,7 +151,8 @@ if __name__ == '__main__':
         # 'dupackfixedrtx0.02', 'dupackfixedrtx0.05', 'dupackfixedrtx0.10', 'dupackfixedrtx0.20', 
         # 'dupackfixedrtx0.30', 'dupackfixedrtx0.50',
         # 'dupacktokenrtx',
-        'dupackhairpin7'
+        'dupackhairpinone1', 'dupackhairpinone2', 'dupackhairpinone4', 'dupackhairpinone7',
+        # 'dupackhairpin7'
     ]
     if not args.vmaf:
         pool = mp.Pool (int (mp.cpu_count () * 0.9))
