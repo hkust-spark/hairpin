@@ -11,7 +11,7 @@ namespace ns3{
 
 class HairpinPolicy : public FECPolicy {
 public:
-    HairpinPolicy(uint16_t delayDdl, uint8_t qoeCoeffPow, bool isRtx, bool isCap);
+    HairpinPolicy(uint16_t delayDdl, double_t qoeCoeffPow, bool isRtx, bool isCap);
     HairpinPolicy();
     ~HairpinPolicy();
     static TypeId GetTypeId (void);

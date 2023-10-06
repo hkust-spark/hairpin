@@ -151,7 +151,7 @@ if __name__ == '__main__':
         # 'dupackfixedrtx0.02', 'dupackfixedrtx0.05', 'dupackfixedrtx0.10', 'dupackfixedrtx0.20', 
         # 'dupackfixedrtx0.30', 'dupackfixedrtx0.50',
         # 'dupacktokenrtx',
-        'dupackhairpinone1', 'dupackhairpinone2', 'dupackhairpinone4', 'dupackhairpinone7',
+        'dupackhairpinone1e+01', 'dupackhairpinone1e+00', 'dupackhairpinone1', 'dupackhairpinone7',
         # 'dupackhairpin7'
     ]
     if not args.vmaf:

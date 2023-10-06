@@ -303,7 +303,7 @@ main (int argc, char *argv[])
     bool isPcapEnabled      = false;
     std::string logDir      = "logs";
 
-    uint16_t qoeCoeffPow = 4;
+    double_t qoeCoeff = 1e-7;
 
     int port = 8000;    /* application port */
     std::string trace = DEFAULT_TRACE;
@@ -326,7 +326,7 @@ main (int argc, char *argv[])
     // fixed-hairpin-policy
     cmd.AddValue("group_size",  "Fixed group size", fixed_group_size);
     // hairpin-policy
-    cmd.AddValue("coeff",       "QoE Coefficent", qoeCoeffPow);
+    cmd.AddValue("coeff",       "QoE Coefficent", qoeCoeff);
     // webrtc policy
     cmd.AddValue("fixed_loss", "Fixed loss rate directly passed to WebRTCPolicy  and WebRTCPolicyStarPolicy", fixed_loss_flag);
     // webrtcstar policy
@@ -346,8 +346,11 @@ main (int argc, char *argv[])
     cmd.Parse (argc, argv);
 
     std::string dir = logDir + "/" + rtxPolicy + fecPolicy;
-    if (fecPolicy == "hairpin" || fecPolicy == "hairpinone")
-      dir += std::to_string (qoeCoeffPow);
+    if (fecPolicy == "hairpin" || fecPolicy == "hairpinone") {
+      char buf[10];
+      snprintf (buf, sizeof (buf), "%.0e", qoeCoeff);
+      dir += buf;
+    }
     else if (fecPolicy == "fixed" || fecPolicy == "lin" || fecPolicy == "fixedrtx")
       dir += std::to_string (param1).substr (0, 4);
 
@@ -410,9 +413,9 @@ main (int argc, char *argv[])
     // set FEC policy
     Ptr<FECPolicy> fecPolicyIns;
     if(fecPolicy == "hairpin" || fecPolicy == "hairpinbound") {
-        fecPolicyIns = CreateObject<HairpinPolicy> (delayDdl, (uint8_t) qoeCoeffPow, 1, 0);
+        fecPolicyIns = CreateObject<HairpinPolicy> (delayDdl, qoeCoeff, 1, 0);
     } else if(fecPolicy == "hairpinone") {
-        fecPolicyIns = CreateObject<HairpinPolicy> (0, (uint8_t) qoeCoeffPow, 1, 0);
+        fecPolicyIns = CreateObject<HairpinPolicy> (0, qoeCoeff, 1, 0);
     } else if(fecPolicy == "fixed") {
         fecPolicyIns = CreateObject<FixedPolicy> (param1);
     } else if(fecPolicy == "webrtc") {

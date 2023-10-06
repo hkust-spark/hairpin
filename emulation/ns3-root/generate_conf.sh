@@ -13,7 +13,7 @@ do
     done
     
     rtx=dupack
-    for coeff in 7
+    for coeff in 1e-7
     do
         echo '"'${conf}' --fecPolicy=hairpin --rtxPolicy='${rtx}' --coeff='${coeff}'",logs/'${rtx}'hairpin'${coeff}'/'${trace}'/output.tr' >> ${fname}
     done

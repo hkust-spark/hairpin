@@ -100,6 +100,7 @@ def generate_array(result_set, beta_dict, block_dict, coeff):
             + round((pkt - pkt_set[0]) / pkt_itvl)
         try:
             beta_array[index] = beta_dict[loss][frame_size][layer][pkt]['beta_pkt']
+            beta_array[index] = beta_array[index] if beta_array[index] < 255 else 255
         except KeyError:
             continue
 

@@ -15,7 +15,7 @@ do
         done
         
         rtx=dupack
-        coeff=7
+        coeff=1e-7
         echo '"'${conf}' --fecPolicy=hairpin --rtxPolicy='${rtx}' --coeff='${coeff}'",logs-ddl'${ddl}'/'${rtx}'hairpin'${coeff}'/'${trace}'/output.tr' >> ${fname}
     done
 done

@@ -7,21 +7,23 @@ NS_LOG_COMPONENT_DEFINE("Hairpin");
 /* class HairpinPolicy */
 const std::vector<uint8_t> HairpinPolicy::group_size_list = {5, 15, 20, 25, 30, 35, 40, 45, 50, 55};
 
-HairpinPolicy::HairpinPolicy (uint16_t delayDdl, uint8_t qoeCoeffPow, bool isRtx, bool isCap)
+HairpinPolicy::HairpinPolicy (uint16_t delayDdl, double_t qoeCoeff, bool isRtx, bool isCap)
 : FECPolicy(MilliSeconds(1)) 
 , k_betaArraySize {462825}
 , k_blockArraySize {7209972}
 , k_paramDir {"../../../simulation/code/model/"} 
 , m_isBlockSizeOpt {false} {
-    k_qoeCoeffPow = qoeCoeffPow;
-    k_qoeCoeff = std::pow (10, -qoeCoeffPow);
+    k_qoeCoeff = qoeCoeff;
     k_delayDdl = delayDdl;
     this->pacing_flag = false;
 
-    std::string dataConf = "array-rtx" + std::to_string (isRtx) + "-cap" + std::to_string (isCap) + 
-        "-coeff1e-0" + std::to_string (qoeCoeffPow);
+    char buf[100];
+    snprintf (buf, sizeof (buf), "array-rtx%d-cap%d-coeff%.0e", isRtx, isCap, k_qoeCoeff);
+    std::string dataConf = buf;
     m_betaArray = new uint8_t[k_betaArraySize];
     std::ifstream betaIo (k_paramDir + "beta-" + dataConf + ".bin", std::ifstream::binary);
+    if (betaIo.fail ())
+        NS_FATAL_ERROR ("Cannot open " + k_paramDir + "beta-" + dataConf + ".bin");
     betaIo.seekg (0, std::ios::beg);
     betaIo.read ((char *) m_betaArray, sizeof (uint8_t) * k_betaArraySize);
     betaIo.close ();

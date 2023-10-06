@@ -10,7 +10,7 @@ cd emulation
 ```
 
 ## Configure before building!
-For ns-3.33 and below, to use c++4 and above features, should configure like this:
+For ns-3.33 and below, to use c++14 and above features, should configure like this:
 ([More information: C++ standard configuration in build system (#352) · Issues · nsnam / ns-3-dev · GitLab](https://gitlab.com/nsnam/ns-3-dev/-/issues/352))
 ```bash
 LDFLAGS="-lboost_filesystem -lboost_system" ./waf configure --cxx-standard=-std=c++17
@@ -28,3 +28,11 @@ If you want to run a single code for debugging, copy one line from the `conf` fi
 
 ## Process the results
 The `process_results.py` is used to process the results and generate the data to plot figures in the paper.
+
+## Generate parameters for other coefficient
+```bash
+cd simulation/code/model
+python fec_w_rtx.py --func offline_data -coeff 1e+00
+python merge_results.py --coeff 1e+00
+```
+Currently the coefficient only supports $10^n$.
