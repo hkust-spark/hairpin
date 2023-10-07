@@ -388,6 +388,8 @@ comb_cache_fname = "./cache/comb_cache.pkl"
 trans_pbl_cache_fname = "./cache/trans_pbl_cache_%.2f%%.pkl"
 # return comb_cache, trans_pbl_cache
 def generate_cache(loss_rate_list, max_group_size=55):
+    if not os.path.exists("./cache"):
+        os.mkdir("./cache")
     # cache for combination calculation
     if not os.path.exists(comb_cache_fname):
         print("Generating combination cache...")
