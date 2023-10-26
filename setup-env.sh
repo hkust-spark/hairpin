@@ -24,9 +24,9 @@ fi
 ns3_root="${current_dir}/${ns3_folder}/ns-${ns3_ver}"
 ns3_src="${ns3_root}/src"
 ns3_scratch="${ns3_root}/scratch"
-app_folder="bitrate-ctrl"
+app_folder="spark-rtc"
 scratch_folder="scratch"
-root_folder="ns3_root"
+root_folder="ns3-scripts"
 # creat soft link
 if [ ! -d "${current_dir}/${app_folder}" ]
 then
@@ -39,7 +39,7 @@ else
         rm -rf ${ns3_src}/${app_folder}
     fi
     echo "Linking all files..."
-    # linking ./bitrate-ctrl
+    # linking ./spark-rtc
     ln -s -v ${current_dir}/${app_folder} ${ns3_src}/${app_folder}
     # linking ./scratch
     ln -s -f -v ${current_dir}/${scratch_folder}/* ${ns3_scratch}

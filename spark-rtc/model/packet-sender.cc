@@ -6,7 +6,7 @@ NS_LOG_COMPONENT_DEFINE("PacketSender");
 TypeId PacketSender::GetTypeId() {
     static TypeId tid = TypeId ("ns3::PacketSender")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -656,7 +656,7 @@ TypeId PacketFrame::GetTypeId()
 {
     static TypeId tid = TypeId ("ns3::PacketFrame")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };

@@ -7,7 +7,7 @@ NS_LOG_COMPONENT_DEFINE("PacketHeader");
 TypeId GroupPacketInfo::GetTypeId() {
     static TypeId tid = TypeId ("ns3::GroupPacketInfo")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -30,7 +30,7 @@ GroupPacketInfo::~GroupPacketInfo() {};
 TypeId NetworkPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::NetworkPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<NetworkPacketHeader> ()
     ;
     return tid;
@@ -62,7 +62,7 @@ void NetworkPacketHeader::Print (std::ostream &os) const {
 TypeId NetworkPacketPayload::GetTypeId() {
     static TypeId tid = TypeId ("ns3::NetworkPacketPayload")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -109,7 +109,7 @@ void NetworkPacketPayload::Print (std::ostream &os) const {
 TypeId VideoPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::VideoPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<VideoPacketHeader> ()
     ;
     return tid;
@@ -177,7 +177,7 @@ void VideoPacketHeader::Print (std::ostream &os) const {
 TypeId DataPktFrameInfo::GetTypeId() {
     static TypeId tid = TypeId ("ns3::DataPktFrameInfo")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -194,7 +194,7 @@ DataPktFrameInfo::~DataPktFrameInfo() {};
 TypeId DataPktDigest::GetTypeId() {
     static TypeId tid = TypeId ("ns3::DataPktDigest")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -206,7 +206,7 @@ DataPktDigest::~DataPktDigest() {};
 TypeId DataPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::DataPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<DataPacketHeader> ()
     ;
     return tid;
@@ -244,7 +244,7 @@ void DataPacketHeader::Print (std::ostream &os) const {
 TypeId FECPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::FECPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<FECPacketHeader> ()
     ;
     return tid;
@@ -303,7 +303,7 @@ void FECPacketHeader::Print (std::ostream &os) const {
 TypeId AckPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::AckPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<AckPacketHeader> ()
     ;
     return tid;
@@ -361,7 +361,7 @@ void AckPacketHeader::Print (std::ostream &os) const {
 TypeId FrameAckPacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::FrameAckPacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<FrameAckPacketHeader> ()
     ;
     return tid;
@@ -395,7 +395,7 @@ void FrameAckPacketHeader::Print (std::ostream &os) const {
 TypeId NetStates::GetTypeId() {
     static TypeId tid = TypeId ("ns3::NetStates")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -413,7 +413,7 @@ NetStates::~NetStates() {};
 TypeId NetStatePacketHeader::GetTypeId() {
     static TypeId tid = TypeId ("ns3::NetStatePacketHeader")
         .SetParent<Header> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<NetStatePacketHeader> ()
     ;
     return tid;

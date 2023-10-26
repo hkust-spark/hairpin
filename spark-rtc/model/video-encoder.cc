@@ -6,7 +6,7 @@ NS_LOG_COMPONENT_DEFINE("VideoEncoder");
 TypeId VideoEncoder::GetTypeId() {
     static TypeId tid = TypeId ("ns3::VideoEncoder")
         .SetParent<Object> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
     ;
     return tid;
 };
@@ -53,7 +53,7 @@ uint32_t VideoEncoder::GetBitrate() {
 TypeId DumbVideoEncoder::GetTypeId() {
     static TypeId tid = TypeId ("ns3::DumbVideoEncoder")
         .SetParent<VideoEncoder> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<DumbVideoEncoder> ()
     ;
     return tid;

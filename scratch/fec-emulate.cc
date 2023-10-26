@@ -5,7 +5,7 @@
 #include "ns3/network-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
 #include "ns3/nstime.h"
-#include "ns3/bitrate-ctrl-module.h"
+#include "ns3/spark-rtc-module.h"
 #include "ns3/flow-monitor-module.h"
 #include "ns3/common-header.h"
 

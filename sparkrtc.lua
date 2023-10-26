@@ -1,5 +1,5 @@
-local hairpin_protocol = Proto("Hairpin", "Hairpin Cloud Game Emulator Protocol")
-local proto_name = "hairpin"
+local sparkrtc_protocol = Proto("SparkRTC", "SparkRTC Protocol")
+local proto_name = "SparkRTC"
 
 -- ---- Fields ---- --
 -- NetworkPacket
@@ -32,7 +32,7 @@ local loss_seq_size = ProtoField.uint16(proto_name .. ".loss_seq_size", "loss_se
 
 
 
-hairpin_protocol.fields = {
+sparkrtc_protocol.fields = {
     packet_type,
     encode_type, global_id,
     group_id, group_data_num, group_fec_num, pkt_id_in_group,
@@ -53,13 +53,13 @@ function get_packet_type(opcode)
     return opcode_name
 end
 
-function hairpin_protocol.dissector(buffer, pinfo, tree)
+function sparkrtc_protocol.dissector(buffer, pinfo, tree)
     length = buffer:len()
     if length == 0 then return end
 
-    pinfo.cols.protocol = hairpin_protocol.name
+    pinfo.cols.protocol = sparkrtc_protocol.name
 
-    local subtree = tree:add(hairpin_protocol, buffer(), "Hairpin Cloud Game Emulator Protocol Data")
+    local subtree = tree:add(sparkrtc_protocol, buffer(), "SparkRTC Protocol Data")
 
     -- packet_type
     local packet_type_code = buffer(0, 4):uint()
@@ -69,7 +69,7 @@ function hairpin_protocol.dissector(buffer, pinfo, tree)
     -- Payload
     if packet_type_name == "DATA_PKT" or packet_type_name == "DUP_FEC_PKT" or packet_type_name == "FEC_PKT" then
         -- VideoPacket
-        local subtree_video = subtree:add(hairpin_protocol, buffer(), "Video")
+        local subtree_video = subtree:add(sparkrtc_protocol, buffer(), "Video")
         subtree_video:add(encode_type, buffer(4, 8))
         subtree_video:add(global_id, buffer(12, 2))
         subtree_video:add(group_id, buffer(14, 4))
@@ -82,23 +82,23 @@ function hairpin_protocol.dissector(buffer, pinfo, tree)
         subtree_video:add(pkt_id_in_batch, buffer(32, 2))
         subtree_video:add(tx_count, buffer(34, 1))
         if packet_type_name == "DATA_PKT" or packet_type_name == "DUP_FEC_PKT" then
-            local subtree_data = subtree_video:add(hairpin_protocol, buffer(), "Frame")
+            local subtree_data = subtree_video:add(sparkrtc_protocol, buffer(), "Frame")
             -- DataPacket / DupFECPacket
             subtree_data:add(frame_id, buffer(35, 4))
             subtree_data:add(frame_pkt_num, buffer(39, 2))
             subtree_data:add(pkt_id_in_frame, buffer(41, 2))
         elseif packet_type_name == "FEC_PKT" then
-            local subtree_fec = subtree_video:add(hairpin_protocol, buffer(), "FEC")
+            local subtree_fec = subtree_video:add(sparkrtc_protocol, buffer(), "FEC")
             -- DataPacket / DupFECPacket
             subtree_fec:add(fec_data_count, buffer(35, 2))
         end
     elseif packet_type_name == "RTX_REQ_PKT" then
         -- RtxRequestPacket
-        local subtree_rtx_req = subtree:add(hairpin_protocol, buffer(), "RTXReq")
+        local subtree_rtx_req = subtree:add(sparkrtc_protocol, buffer(), "RTXReq")
         subtree_rtx_req:add(rtx_req_count, buffer(4, 2))
     elseif packet_type_name == "NETSTATE_PKT" then
         -- NetStatePacket
-        local subtree_state = subtree:add(hairpin_protocol, buffer(), "NetState")
+        local subtree_state = subtree:add(sparkrtc_protocol, buffer(), "NetState")
         subtree_state:add(loss_rate, buffer(4, 2))
         subtree_state:add(throughput, buffer(6, 2))
         subtree_state:add(group_delay, buffer(8, 2))
@@ -107,4 +107,4 @@ function hairpin_protocol.dissector(buffer, pinfo, tree)
 end
 
 local udp_port = DissectorTable.get("udp.port")
-udp_port:add(8000, hairpin_protocol)
+udp_port:add(8000, sparkrtc_protocol)

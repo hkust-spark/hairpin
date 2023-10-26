@@ -45,7 +45,7 @@ HairpinPolicy::~HairpinPolicy() {};
 TypeId HairpinPolicy::GetTypeId() {
     static TypeId tid = TypeId ("ns3::HairpinPolicy")
         .SetParent<FECPolicy> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<HairpinPolicy> ()
     ;
     return tid;

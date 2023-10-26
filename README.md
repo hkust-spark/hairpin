@@ -1,3 +1,9 @@
+Hairpin is built on SparkRTC ns-3 library, which provides a simulation for the real-time video communication in ns-3.
+It provides congestion control algorithms (GCC, NADA) and forward error correction baselines.
+Please cite our paper if you want to use the library.
+
+The packet can be parsed with the `sparkrtc.lua` in Wireshark.
+
 ## Install dependency
 ```bash
 sudo apt install build-essential libboost-all-dev
@@ -5,7 +11,6 @@ sudo apt install build-essential libboost-all-dev
 
 ## Fetch the latest ns-3 source files
 ```bash
-cd emulation
 ./setup-env.sh
 ```
 
@@ -31,7 +36,7 @@ The `process_results.py` is used to process the results and generate the data to
 
 ## Generate parameters for other coefficient
 ```bash
-cd simulation/code/model
+cd model
 python fec_w_rtx.py --func offline_data -coeff 1e+00
 python merge_results.py --coeff 1e+00
 ```

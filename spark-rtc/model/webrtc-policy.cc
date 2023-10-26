@@ -71,7 +71,7 @@ WebRTCPolicy::~WebRTCPolicy () {};
 TypeId WebRTCPolicy::GetTypeId () {
     static TypeId tid = TypeId ("ns3::WebRTCPolicy")
         .SetParent<FECPolicy> ()
-        .SetGroupName ("bitrate-ctrl")
+        .SetGroupName ("spark-rtc")
         .AddConstructor<WebRTCPolicy> ()
     ;
     return tid;
@@ -106,7 +106,7 @@ WebRTCAdaptivePolicy::~WebRTCAdaptivePolicy () {};
 TypeId WebRTCAdaptivePolicy::GetTypeId () {
     static TypeId tid = TypeId ("ns3::WebRTCAdaptivePolicy")
         .SetParent<FECPolicy> ()
-        .SetGroupName ("bitrate-ctrl")
+        .SetGroupName ("spark-rtc")
         .AddConstructor<WebRTCAdaptivePolicy> ()
     ;
     return tid;
@@ -151,7 +151,7 @@ WebRTCStarPolicy::~WebRTCStarPolicy() {};
 TypeId WebRTCStarPolicy::GetTypeId() {
     static TypeId tid = TypeId ("ns3::WebRTCStarPolicy")
         .SetParent<FECPolicy> ()
-        .SetGroupName("bitrate-ctrl")
+        .SetGroupName("spark-rtc")
         .AddConstructor<WebRTCStarPolicy> ()
     ;
     return tid;
