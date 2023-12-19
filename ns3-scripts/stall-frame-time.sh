@@ -8,5 +8,5 @@ do
         tot = $7
     } END {
         print framecnt / NR, timecnt / tot
-    }' logs/dupackhairpin7/${trace}/app.tr | grep -v "0 0"
+    }' logs/dupackhairpin7/${trace}/app.log | grep -v "0 0"
 done

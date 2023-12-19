@@ -21,7 +21,7 @@ do
                         print 0
                     }
                 }
-            }' logs/${alg}/${trace}/fec.tr >> frame-loss-${alg}-round-${round}.tmp
+            }' logs/${alg}/${trace}/fec.log >> frame-loss-${alg}-round-${round}.tmp
         done
         python writecdf.py --input frame-loss-${alg}-round-${round}.tmp --output frame-loss-${alg}-round-${round}.cdf
         awk '{sum+=$1} END {print "'${round}'", sum/NR}' frame-loss-${alg}-round-${round}.tmp >> frame-loss-${alg}-round.stat

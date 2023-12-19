@@ -6,6 +6,10 @@ current_dir=$(pwd)
 ns3_ver="3.33"
 ns3_folder="ns-allinone-${ns3_ver}"
 
+echo "syncing the ns3-sparkrtc submodule..."
+
+git submodule update --init --recursive
+
 # download ns3 to current dir
 if [ ! -d "${current_dir}/${ns3_folder}" ]
 then
@@ -23,9 +27,7 @@ fi
 
 ns3_root="${current_dir}/${ns3_folder}/ns-${ns3_ver}"
 ns3_src="${ns3_root}/src"
-ns3_scratch="${ns3_root}/scratch"
-app_folder="spark-rtc"
-scratch_folder="scratch"
+app_folder="ns3-sparkrtc"
 root_folder="ns3-scripts"
 # creat soft link
 if [ ! -d "${current_dir}/${app_folder}" ]
@@ -33,24 +35,23 @@ then
     echo "${app_folder} does not exist!"
     return
 else
+    echo "Linking all files..."
     # if soft link already exists, delete it
     if [ -d "${ns3_src}/${app_folder}" ]
     then
         rm -rf ${ns3_src}/${app_folder}
     fi
-    echo "Linking all files..."
-    # linking ./spark-rtc
-    ln -s -v ${current_dir}/${app_folder} ${ns3_src}/${app_folder}
-    # linking ./scratch
-    ln -s -f -v ${current_dir}/${scratch_folder}/* ${ns3_scratch}
+    # linking ./ns3-sparkrtc
+    ln -s -f -v ${current_dir}/${app_folder} ${ns3_src}/${app_folder}
     # linking ./ns3_root
     ln -s -f -v ${current_dir}/${root_folder}/* ${ns3_root}
 fi
 
 # compile (opitonal)
 echo "Compiling ns3..."
-cd ${current_dir}/${ns3_folder}
-./build.py
+cd ${ns3_root}
+LDFLAGS="-lboost_filesystem -lboost_system" ./waf configure --cxx-standard=-std=c++17 --disable-python --enable-examples
+./waf
 
 echo "Enviorment set!"
 

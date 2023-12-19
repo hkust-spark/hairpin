@@ -99,8 +99,8 @@ def multiAlgo (logdir, algo, args):
     vmafSum = 0
     avgDelaySum = 0
     for trace in traces:
-        missDdl, avgDelay, missDdlTime, stallFreeTime = appProcess (os.path.join (logdir, algo, trace, 'app.tr'))
-        otherPackets, dataPackets = fecProcess (os.path.join (logdir, algo, trace, 'fec.tr'))
+        missDdl, avgDelay, missDdlTime, stallFreeTime = appProcess (os.path.join (logdir, algo, trace, 'app.log'))
+        otherPackets, dataPackets = fecProcess (os.path.join (logdir, algo, trace, 'fec.log'))
         missDdlAll.append (np.mean (missDdl))
         missDdlTimeAll.append (np.mean (missDdlTime))
         stallFreeTimeAll.append (np.mean (stallFreeTime))
