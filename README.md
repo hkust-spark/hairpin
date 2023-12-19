@@ -1,6 +1,17 @@
 Hairpin is built on SparkRTC ns-3 library, which provides a simulation for the real-time video communication in ns-3.
 It provides congestion control algorithms (GCC, NADA) and forward error correction baselines.
-Please cite our paper if you want to use the library.
+The main functionality has been implemented in the (ns3-sparkrtc)[https://github.com/hkust-spark/ns3-sparkrtc] repository.
+This repository is used to generate the parameters of Hairpin and run the experiments.
+
+Please cite our paper if you use our simulator:
+```
+@inproceedings{nsdi2024hairpin,
+  title={Hairpin: Rethinking Packet Loss Recovery in Edge-based Interactive Video Streaming},
+  author={Meng, Zili and Kong, Xiao and Chen, Jing and Wang, Bo and Xu, Mingwei and Han, Rui and Liu, Honghao and Arun, Venkat and Hu, Hongxin and Wei, Xue},
+  booktitle={Proc. USENIX NSDI},
+  year={2024}
+}
+```
 
 The packet can be parsed with the `sparkrtc.lua` in Wireshark.
 
@@ -22,12 +33,20 @@ LDFLAGS="-lboost_filesystem -lboost_system" ./waf configure --cxx-standard=-std=
 ```
 
 ## Run the code
+To simply test if the codes can run, just run at `ns-allinone-3.33/ns-3.33`:
+```bash
+./waf --run "rtc-test --vary=1 --fecPolicy=hairpin
+```
+When the process is running, the logs can be found at `ns-allinone-3.33/ns-3.33/logs/`.
+Usually the program will finish in around 5 minutes.
+
+## Reproduce the results
 We use `generate_conf_*` to generate configuration files, where the files are later put into `*.conf` files.
 For example, to run the hairpinone baseline in the WiFi traces, just run
 ```bash
 python run_ns3.py --conf wifi-hairpinone.conf
 ```
-`run_ns3.py` is a wrapper to parallelly run ns-3 experiments over different traces.
+`run_ns3.py` is a wrapper to parallelly run ns-3 experiments over different traces and in parallel.
 
 If you want to run a single code for debugging, copy one line from the `conf` file and use ns-3 command line to run it.
 
