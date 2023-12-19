@@ -25,6 +25,10 @@ then
     tar xjf ${ns3_file_name}
 fi
 
+# Copy Hairpin weights
+echo "Copying hairpin weights..."
+cp ./model/beta-array-rtx*.bin ./ns3-sparkrtc/model/fec/
+
 ns3_root="${current_dir}/${ns3_folder}/ns-${ns3_ver}"
 ns3_src="${ns3_root}/src"
 app_folder="ns3-sparkrtc"
@@ -47,7 +51,7 @@ else
     ln -s -f -v ${current_dir}/${root_folder}/* ${ns3_root}
 fi
 
-# compile (opitonal)
+# compile
 echo "Compiling ns3..."
 cd ${ns3_root}
 LDFLAGS="-lboost_filesystem -lboost_system" ./waf configure --cxx-standard=-std=c++17 --disable-python --enable-examples
