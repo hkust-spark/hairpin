@@ -27,11 +27,11 @@ fi
 
 # Copy Hairpin weights
 echo "Copying hairpin weights..."
-cp ./model/beta-array-rtx*.bin ./ns3-sparkrtc/model/fec/
+cp ./model/beta-array-rtx*.bin ./sparkrtc/model/fec/
 
 ns3_root="${current_dir}/${ns3_folder}/ns-${ns3_ver}"
 ns3_src="${ns3_root}/src"
-app_folder="ns3-sparkrtc"
+app_folder="sparkrtc"
 root_folder="ns3-scripts"
 # creat soft link
 if [ ! -d "${current_dir}/${app_folder}" ]
