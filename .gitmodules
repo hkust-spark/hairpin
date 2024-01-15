@@ -1,0 +1,4 @@
+[submodule "ns3-sparkrtc"]
+	path = sparkrtc
+	url = https://github.com/hkust-spark/ns3-sparkrtc
+	branch = ns-3.33
