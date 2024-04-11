@@ -1,3 +1,5 @@
+We also provide a WebRTC-based implementation for Hairpin at [hairpin-webrtc](https://github.com/hkust-spark/hairpin-webrtc).
+
 Hairpin is built on SparkRTC ns-3 library, which provides a simulation for the real-time video communication in ns-3.
 It provides congestion control algorithms (GCC, NADA) and forward error correction baselines.
 The main functionality has been implemented in the [ns3-sparkrtc](https://github.com/hkust-spark/ns3-sparkrtc) repository.
