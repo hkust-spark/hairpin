@@ -37,7 +37,7 @@ LDFLAGS="-lboost_filesystem -lboost_system" ./waf configure --cxx-standard=-std=
 ## Run the code
 To simply test if the codes can run, just run at `ns-allinone-3.33/ns-3.33`:
 ```bash
-./waf --run "rtc-test --vary=1 --fecPolicy=hairpin
+./waf --run "rtc-test --vary=1 --fecPolicy=hairpin"
 ```
 When the process is running, the logs can be found at `ns-allinone-3.33/ns-3.33/logs/`.
 Usually the program will finish in around 5 minutes.
